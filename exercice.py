@@ -3,28 +3,53 @@
 
 
 def order(values: list = None) -> list:
-    if values is None:
-        # TODO: demander les valeurs ici
-        pass
 
-    return []
+    if values is None:
+        input_string = input("Veuillez entrer 10 valeurs "
+                             "séparées par un espace: ")
+        values = input_string.split()
+
+    values.sort()
+
+    return values
 
 
 def anagrams(words: list = None) -> bool:
     if words is None:
-        # TODO: demander les mots ici
-        pass
+        input_string = input("Entrez 2 mots séparés par un espace pour "
+                             "vérifier s'ils sont des anagrames: ")
+        words = input_string.split()
 
-    return False
+    if sorted(words[0]) == sorted(words[1]):
+        return True
+    else:
+        return False
 
 
 def contains_doubles(items: list) -> bool:
+    items.sort()
+    for i in range(len(items) - 1):
+        if items[i] == items[i + 1]:
+            return True
     return False
 
 
 def best_grades(student_grades: dict) -> dict:
     # TODO: Retourner un dictionnaire contenant le nom de l'étudiant ayant la meilleure moyenne ainsi que sa moyenne
-    return {}
+    meilleur_nom = ""
+    meilleure_moyenne = 0
+
+    for nom, notes in student_grades.items():
+        moyenne = 0
+        for note in notes:
+            moyenne += note
+        moyenne /= len(notes)
+
+        if moyenne > meilleure_moyenne:
+            meilleure_moyenne = moyenne
+            meilleur_nom = nom
+
+    return {meilleur_nom: meilleure_moyenne}
 
 
 def frequence(sentence: str) -> dict:
@@ -56,7 +81,8 @@ def main() -> None:
 
     grades = {"Bob": [90, 65, 20], "Alice": [85, 75, 83]}
     best_student = best_grades(grades)
-    print(f"{list(best_student.keys())[0]} a la meilleure moyenne: {list(best_student.values())[0]}")
+    print(
+        f"{list(best_student.keys())[0]} a la meilleure moyenne: {list(best_student.values())[0]}")
 
     sentence = "bonjour, je suis une phrase. je suis compose de beaucoup de lettre. oui oui"
     frequence(sentence)
