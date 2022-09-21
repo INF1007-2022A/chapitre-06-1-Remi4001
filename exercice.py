@@ -35,7 +35,8 @@ def contains_doubles(items: list) -> bool:
 
 
 def best_grades(student_grades: dict) -> dict:
-    # TODO: Retourner un dictionnaire contenant le nom de l'étudiant ayant la meilleure moyenne ainsi que sa moyenne
+    # Retourner un dictionnaire contenant le nom de l'étudiant
+    # ayant la meilleure moyenne ainsi que sa moyenne
     meilleur_nom = ""
     meilleure_moyenne = 0
 
@@ -53,10 +54,30 @@ def best_grades(student_grades: dict) -> dict:
 
 
 def frequence(sentence: str) -> dict:
-    # TODO: Afficher les lettres les plus fréquentes
-    #       Retourner le tableau de lettres
+    # Afficher les lettres les plus fréquentes
+    # Retourner le tableau de lettres
 
-    return {}
+    # Initialiser un dictionnaire qui va contenir
+    # le nombre d'apparition de chaque lettre
+    freq = {}
+
+    max_freq = 0
+
+    for letter in sentence:
+        if letter not in freq:
+            freq[letter] = 1
+        else:
+            freq[letter] += 1
+
+        if freq[letter] > max_freq:
+            max_freq = freq[letter]
+
+    for i in range(max_freq, 5, -1):
+        for key, value in freq.items():
+            if value == i:
+                print(f"Le caractère {key} revient {value} fois.")
+
+    return freq
 
 
 def get_recipes():
@@ -70,10 +91,10 @@ def print_recipe(ingredients) -> None:
 
 
 def main() -> None:
-    print(f"On essaie d'ordonner les valeurs...")
+    print("On essaie d'ordonner les valeurs...")
     order()
 
-    print(f"On vérifie les anagrammes...")
+    print("On vérifie les anagrammes...")
     anagrams()
 
     my_list = [3, 3, 5, 6, 1, 1]
