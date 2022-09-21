@@ -75,13 +75,14 @@ def frequence(sentence: str) -> dict:
     for i in range(max_freq, 5, -1):
         for key, value in freq.items():
             if value == i:
-                print(f"Le caractère {key} revient {value} fois.")
+                print(f"Le caractère \"{key}\" revient {value} fois.")
 
     return freq
 
 
 def get_recipes():
-    # TODO: Demander le nom d'une recette, puis ses ingredients et enregistrer dans une structure de données
+    # Demander le nom d'une recette, puis ses ingredients
+    # et enregistrer dans une structure de données
     nom = input("Nom de la recette: ").lower()
     ingredients = {}
     ingredient = [" "]
@@ -91,17 +92,19 @@ def get_recipes():
         ingredient = input("Ingrédient: ").split()
 
         # Vérifier qu'on a une quantité et un nom par ingrédient
-        if len(ingredient) != 2:
+        if len(ingredient) < 2 and ingredient != []:
             print("Mauvais format! \"quantité ingrédient\" Attendu")
             continue
 
-        ingredients[ingredient[1].lower()] = ingredient[0]
+        if ingredient != []:
+            ingredients[" ".join(ing.lower()
+                                 for ing in ingredient[1:])] = ingredient[0]
 
     return {nom: ingredients}
 
 
 def print_recipe(recettes) -> None:
-    # TODO: Demander le nom d'une recette, puis l'afficher si elle existe
+    # Demander le nom d'une recette, puis l'afficher si elle existe
     nom = input("Veuillez entrer le nom d'une recette à afficher: ").lower()
 
     if nom not in recettes:
@@ -109,7 +112,7 @@ def print_recipe(recettes) -> None:
         return
 
     print(f"Recette {nom}:")
-    for quantite, ingredient in recettes[nom].items():
+    for ingredient, quantite in recettes[nom].items():
         print(f"{quantite:>8} {ingredient}")
 
 
