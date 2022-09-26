@@ -57,6 +57,9 @@ def frequence(sentence: str) -> dict:
     max_freq = 0
 
     for letter in sentence:
+        if letter.isalpha():
+            continue
+
         if letter not in freq:
             freq[letter] = 1
         else:
