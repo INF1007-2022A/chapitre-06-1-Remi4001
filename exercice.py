@@ -20,10 +20,7 @@ def anagrams(words: list = None) -> bool:
                              "vérifier s'ils sont des anagrames: ")
         words = input_string.split()
 
-    if sorted(words[0]) == sorted(words[1]):
-        return True
-    else:
-        return False
+    return sorted(words[0]) == sorted(words[1])
 
 
 def contains_doubles(items: list) -> bool:
