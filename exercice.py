@@ -24,11 +24,7 @@ def anagrams(words: list = None) -> bool:
 
 
 def contains_doubles(items: list) -> bool:
-    items.sort()
-    for i in range(len(items) - 1):
-        if items[i] == items[i + 1]:
-            return True
-    return False
+    return len(set(items)) != len(items)
 
 
 def best_grades(student_grades: dict) -> dict:
